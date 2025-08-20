@@ -1,0 +1,408 @@
+<!-- NAVBAR -->
+<nav class="navbar glass">
+  <div class="logo" (click)="scrollTo('home', $event)">E-Learning</div>
+  <ul>
+    <li><a href="#home" (click)="scrollTo('home', $event)">Home</a></li>
+    <li><a href="#about" (click)="scrollTo('about', $event)">About</a></li>
+    <li><a href="#lectures" (click)="scrollTo('lectures', $event)">Lectures</a></li>
+    <li><a href="#resources" (click)="scrollTo('resources', $event)">Resources</a></li>
+    <li><a href="" (click)="toggleProfile(true); $event.preventDefault()">Profile</a></li>
+  </ul>
+</nav>
+
+<!-- Animated background + all sections in one page -->
+<div class="scene">
+  <!-- Parallax orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+
+  <!-- ===== HERO / HOME ===== -->
+  <section id="home" class="section hero show">
+    <div class="wrap">
+      <div class="hero-copy">
+        <h1 class="title">Welcome to <span class="brand">E-Learning</span></h1>
+        <p class="subtitle">Padhega India, Tabhi Toh Badhega India</p>
+        <div class="cta">
+          <button class="btn btn-primary" (click)="openModal()">Create your account</button>
+          <a href="#about" class="btn btn-outline" (click)="scrollTo('about', $event)">Explore more</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="wireframe">
+          <div class="grid"></div>
+          <div class="glow"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MODAL (Create Account) ===== -->
+  <div class="modal" *ngIf="showModal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeModal()" aria-label="Close">×</button>
+      <h2>Create Account</h2>
+      <p class="muted">Fill in your details to begin your journey</p>
+      <form class="form-grid">
+        <input class="input" placeholder="First name" [(ngModel)]="firstName" name="firstName"/>
+        <input class="input" placeholder="Last name" [(ngModel)]="lastName" name="lastName"/>
+        <input class="input" type="number" placeholder="Age" [(ngModel)]="age" name="age"/>
+        <select class="input" [(ngModel)]="gender" name="gender">
+          <option value="">Gender</option>
+          <option>Female</option>
+          <option>Male</option>
+          <option>Other</option>
+        </select>
+        <select class="input" [(ngModel)]="grade" name="grade">
+          <option value="">Class / College</option>
+          <option>Class 9</option>
+          <option>Class 10</option>
+          <option>Class 11</option>
+          <option>Class 12</option>
+          <option>Undergraduate</option>
+          <option>Postgraduate</option>
+        </select>
+        <input class="input" placeholder="School / College Name" [(ngModel)]="school" name="school"/>
+        <input class="input" placeholder="State" [(ngModel)]="state" name="state"/>
+        <input class="input" placeholder="Address" [(ngModel)]="address" name="address"/>
+        <input class="input" type="email" placeholder="Email" [(ngModel)]="email" name="email"/>
+        <input class="input" placeholder="Username" [(ngModel)]="username" name="username"/>
+        <input class="input" type="password" placeholder="Password" [(ngModel)]="password" name="password"/>
+      </form>
+      <div class="modal-actions">
+        <button class="btn btn-primary" (click)="saveAccount()">Save</button>
+        <button class="btn btn-ghost" (click)="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section reveal-left">
+    <div class="wrap split">
+      <div class="col">
+        <h2 class="section-title">About the Platform</h2>
+        <p class="lead">A fully-featured e-learning platform with video lectures, quizzes, resource sharing, and a progress dashboard. Designed for multi-role access and real-time learning.</p>
+        <div class="card-grid">
+          <article class="card glass">
+            <h3>Summary</h3>
+            <p>Students browse/enroll in courses, attend video lectures, take quizzes, and view progress. Instructors upload content, create quizzes, and monitor learner performance.</p>
+          </article>
+          <article class="card glass">
+            <h3>Procedure</h3>
+            <ul class="bullets">
+              <li>Multi-role system: student, instructor, admin</li>
+              <li>Angular frontend for UI, dashboards, and routing</li>
+              <li>Spring Boot REST APIs (courses, enrollment, quizzes, streaming)</li>
+              <li>JWT authentication; users, courses, progress in MySQL</li>
+              <li>Validation, protected routes, PDF/video uploads</li>
+              <li>Optional Zoom/YouTube integrations</li>
+            </ul>
+          </article>
+          <article class="card glass">
+            <h3>Result</h3>
+            <ul class="bullets">
+              <li>Robust virtual classroom accessible anywhere</li>
+              <li>Self-paced learning with instant feedback</li>
+              <li>Instructor insights and class performance monitoring</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+      <div class="col side-visual">
+        <div class="stack-cards">
+          <div class="stack-card s1"></div>
+          <div class="stack-card s2"></div>
+          <div class="stack-card s3"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section reveal-right">
+    <div class="wrap split">
+      <div class="col">
+        <h2 class="section-title">Contact</h2>
+        <p class="lead">Have questions or suggestions? Reach out and we’ll get back during working hours.</p>
+        <div class="contact-actions">
+          <button class="btn btn-outline" (click)="goToGoogleForm()">Open Google Form</button>
+          <div class="timings glass">
+            <div>
+              <div class="label">Email</div>
+              <div class="value">manshapandey12.15@gmail.com</div>
+            </div>
+            <div>
+              <div class="label">Hours</div>
+              <div class="value">9:00 AM – 7:00 PM</div>
+            </div>
+            <div>
+              <div class="label">Location</div>
+              <div class="value">Boring Road, Patna, Bihar, India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="map glass">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3569.5674418280916!2d85.116!3d25.609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed583d4af8f8d3%3A0x12345!2sBoring%20Road%2C%20Patna%2C%20Bihar!5e0!3m2!1sen!2sin!4v123456" width="100%" height="320" style="border:0;" loading="lazy" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LECTURE ===== -->
+  <section id="lectures" class="section reveal-left">
+    <div class="wrap">
+      <h2 class="section-title">Lectures</h2>
+      <p class="lead">Curated playlists and live classes for Computer Science, JEE prep, and Government exams. YouTube integration for on-demand learning; Zoom/Google Meet for live sessions.</p>
+      <div class="card-grid three">
+        <!-- Lectures cards -->
+        <article class="card glass">
+          <h3>Computer Science</h3>
+          <div class="embed">
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/5LeZflr8Zfs" title="CS Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="row-actions">
+            <a class="btn btn-sm btn-outline" href="#" target="_blank">Open CS Playlist</a>
+          </div>
+        </article>
+        <!-- More lecture cards -->
+        <article class="card glass">
+          <h3>JEE Preparation</h3>
+          <div class="embed">
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/2i0p2tidN88" title="JEE Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="row-actions">
+            <a class="btn btn-sm btn-outline" href="#" target="_blank">Open JEE Playlist</a>
+          </div>
+        </article>
+        <article class="card glass">
+          <h3>Govt Exams</h3>
+          <div class="embed">
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/0KQ1Vudz2GM" title="Govt Exams Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="row-actions">
+            <a class="btn btn-sm btn-outline" href="#" target="_blank">Open Govt Exams</a>
+          </div>
+        </article>
+        <article class="card glass">
+          <h3>Chemistry</h3>
+          <div class="embed">
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/2U1SrCAXnws" title="CS Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="row-actions">
+            <a class="btn btn-sm btn-outline" href="#" target="_blank">Open Chemistry Playlist</a>
+          </div>
+        </article>
+        <article class="card glass">
+          <h3>Biology</h3>
+          <div class="embed">
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/4wVNa9JB_Y0" title="CS Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="row-actions">
+            <a class="btn btn-sm btn-outline" href="#" target="_blank">Open Biology Playlist</a>
+          </div>
+        </article>
+        <article class="card glass">
+          <h3>Physics Jee</h3>
+          <div class="embed">
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/2i0p2tidN88" title="CS Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="row-actions">
+            <a class="btn btn-sm btn-outline" href="#" target="_blank">Open Physics Playlist</a>
+          </div>
+        </article>
+      </div>
+      <div class="live glass">
+        <div class="live-copy">
+          <h3>Live Classes</h3>
+          <p>Join scheduled sessions or host your own live class. Integrate Zoom or Google Meet for real-time teaching.</p>
+        </div>
+        <div class="live-actions">
+          <a class="btn btn-primary" href="https://zoom.us/join" target="_blank">Join a Class</a>
+          <a class="btn btn-outline" href="https://zoom.us/meeting/schedule" target="_blank" rel="noopener">Create a Class</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUIZZES & TESTS ===== -->
+  <section id="quizzes" class="section reveal-left">
+    <div class="wrap">
+      <h2 class="section-title">Quizzes & Tests</h2>
+      <p class="lead">Test your knowledge after each lecture. Complete quizzes to track your progress and earn badges!</p>
+      <div class="card-grid three">
+        <article class="card glass" *ngFor="let quiz of quizzes">
+          <h3>{{ quiz.title }}</h3>
+          <p>Total Marks: {{ quiz.totalMarks }}</p>
+          <p>Status: <span *ngIf="quiz.completed; else notTaken">Completed (Score: {{ quiz.score }}%)</span>
+            <ng-template #notTaken>Not taken yet</ng-template>
+          </p>
+          <div class="row-actions">
+            <button class="btn btn-sm btn-primary" (click)="startQuiz(quiz)">Start Quiz</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESOURCES ===== -->
+  <section id="resources" class="section reveal-right">
+    <div class="wrap">
+      <h2 class="section-title">Resources</h2>
+      <p class="lead">Download organized PDFs (subject-wise, topic-wise) or upload your notes to help others.</p>
+      <div class="resource-grid">
+        <article class="resource glass">
+          <h4>Mathematics</h4>
+          <ul class="links">
+            <li><a href="#" download>Algebra – Basics.pdf</a></li>
+            <li><a href="#" download>Calculus – Derivatives.pdf</a></li>
+            <li><a href="#" download>Coordinate Geometry.pdf</a></li>
+          </ul>
+        </article>
+        <article class="resource glass">
+          <h4>Physics</h4>
+          <ul class="links">
+            <li><a href="#" download>Mechanics – Newton’s Laws.pdf</a></li>
+            <li><a href="#" download>Optics – Lenses.pdf</a></li>
+            <li><a href="#" download>Electricity – Basics.pdf</a></li>
+          </ul>
+        </article>
+        <article class="resource glass">
+          <h4>Computer Science</h4>
+          <ul class="links">
+            <li><a href="#" download>Data Structures – Arrays.pdf</a></li>
+            <li><a href="#" download>OOP – Concepts.pdf</a></li>
+            <li><a href="#" download>DBMS – SQL Primer.pdf</a></li>
+          </ul>
+        </article>
+        <article class="resource glass">
+          <h4>Chemistry</h4>
+          <ul class="links">
+            <li><a href="#" download>Organic – Basics.pdf</a></li>
+            <li><a href="#" download>Physical – Thermodynamics.pdf</a></li>
+            <li><a href="#" download>Inorganic – Periodic Table.pdf</a></li>
+          </ul>
+        </article>
+      </div>
+      <div class="upload glass">
+        <h3>Post Your Notes</h3>
+        <div class="upload-grid">
+          <input class="input" type="text" placeholder="Subject" />
+          <input class="input" type="text" placeholder="Topic / Title" />
+          <textarea class="input area" rows="3" placeholder="Short description"></textarea>
+          <input class="input file" type="file" accept="application/pdf" (change)="uploadPdf($event)" />
+        </div>
+        <div class="uploaded" *ngIf="uploadedPdfs.length">
+          <h4>Recently uploaded (local):</h4>
+          <ul>
+            <li *ngFor="let pdf of uploadedPdfs">{{ pdf }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="wrap footer-wrap">
+      <div class="made">Made by <strong>Mansha Pandey</strong></div>
+      <div class="links">
+        <a href="#home" (click)="scrollTo('home', $event)">Home</a>
+        <a href="#about" (click)="scrollTo('about', $event)">About</a>
+        <a href="#lectures" (click)="scrollTo('lectures', $event)">Lectures</a>
+        <a href="#resources" (click)="scrollTo('resources', $event)">Resources</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===== PROFILE SLIDE PANEL ===== -->
+<div class="drawer-mask" *ngIf="showProfile" (click)="toggleProfile(false)"></div>
+<aside class="drawer" *ngIf="showProfile" (click)="$event.stopPropagation()">
+  <div class="drawer-header">
+    <h3>Profile</h3>
+    <button class="drawer-close" (click)="toggleProfile(false)">×</button>
+  </div>
+  <div class="drawer-tabs">
+        <button [class.active]="activeProfileTab === 'info'" (click)="setTab('info')">User Info</button>
+    <button [class.active]="activeProfileTab === 'resources'" (click)="setTab('resources')">My Resources</button>
+    <button [class.active]="activeProfileTab === 'streak'" (click)="setTab('streak')">Streak & To-Do</button>
+    <button [class.active]="activeProfileTab === 'report'" (click)="setTab('report')">Report Card</button>
+  </div>
+  <div class="drawer-body">
+    <!-- User Info -->
+    <div *ngIf="activeProfileTab === 'info'" class="drawer-section">
+      <div class="info-grid">
+        <div><label>Name</label><div>{{ firstName || '-' }} {{ lastName || '' }}</div></div>
+        <div><label>Age</label><div>{{ age || '-' }}</div></div>
+        <div><label>Gender</label><div>{{ gender || '-' }}</div></div>
+        <div><label>Class/Grade</label><div>{{ grade || '-' }}</div></div>
+        <div><label>School/College</label><div>{{ school || '-' }}</div></div>
+        <div><label>State</label><div>{{ state || '-' }}</div></div>
+        <div><label>Address</label><div>{{ address || '-' }}</div></div>
+        <div><label>Email</label><div>{{ email || '-' }}</div></div>
+        <div><label>Username</label><div>{{ username || '-' }}</div></div>
+      </div>
+      <div class="hint">Edit these via “Create your account” on the Home section.</div>
+    </div>
+    <!-- My Resources -->
+    <div *ngIf="activeProfileTab === 'resources'" class="drawer-section">
+      <div *ngIf="!uploadedPdfs.length" class="muted">No resources posted yet. Upload from the Resources section.</div>
+      <div class="res-list" *ngIf="uploadedPdfs.length">
+        <div class="res-item" *ngFor="let r of uploadedPdfs">
+          <div class="res-title">{{ r.subject }} — {{ r.name }}</div>
+          <div class="res-meta">Views {{ r.views }} • Downloads {{ r.downloads }}</div>
+          <div class="res-desc">{{ r.description }}</div>
+        </div>
+      </div>
+    </div>
+    <!-- Streak & To-Do -->
+    <div *ngIf="activeProfileTab === 'streak'" class="drawer-section">
+      <h4>Daily Streak</h4>
+      <div class="calendar">
+        <div class="day" *ngFor="let d of monthDays" [class.hit]="isVisited(d)" [class.miss]="!isVisited(d)">
+          {{ d.slice(-2) }}
+        </div>
+      </div>
+      <h4>To-Do</h4>
+      <div class="todo">
+        <div class="todo-add">
+          <input class="input" [(ngModel)]="newTodo" name="newTodo" placeholder="Add a task...">
+          <button class="btn btn-primary btn-sm" (click)="addTodo()">Add</button>
+        </div>
+        <ul class="todo-list">
+          <li *ngFor="let t of todos; let i = index" [class.done]="t.done">
+            <label>
+              <input type="checkbox" [checked]="t.done" (change)="toggleTodo(i)"/>
+              <span>{{ t.text }}</span>
+            </label>
+            <button class="btn btn-ghost btn-sm" (click)="removeTodo(i)">✕</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Report Card -->
+    <div *ngIf="activeProfileTab === 'report'" class="drawer-section">
+      <div class="stat">
+        <div>Lectures Watched</div>
+        <div class="bar"><span [style.width.%]="(report.lecturesWatched / 20) * 100"></span></div>
+        <div class="num">{{ report.lecturesWatched }}/20</div>
+      </div>
+      <div class="stat">
+        <div>Quizzes Taken</div>
+        <div class="bar"><span [style.width.%]="(report.quizzesTaken / 10) * 100"></span></div>
+        <div class="num">{{ report.quizzesTaken }}/10</div>
+      </div>
+      <div class="stat">
+        <div>Average Score</div>
+        <div class="bar"><span [style.width.%]="report.avgScore"></span></div>
+        <div class="num">{{ report.avgScore }}%</div>
+      </div>
+      <div class="badges">
+        <span class="badge" *ngFor="let b of report.badges">{{ b }}</span>
+      </div>
+    </div>
+  </div>
+</aside>
